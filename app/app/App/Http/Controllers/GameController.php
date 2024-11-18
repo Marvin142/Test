@@ -131,13 +131,18 @@ class GameController extends Controller
         // GamePlayer::Human (the last move was made by the player) or GamePlayer::None (this is the first move).
         // Inside of $player you have the player which wants to play now.
         // If he is allowed to play, you have to return true, otherwise you have to return false.
+        //If The last move was Robot
         if ($game->getLastPlayer(GamePlayer::Robot)) {
             return true; 
         }
-        else {
+        //If the Last Move was Player
+        else if ($game->getLastPlayer(GamePlayer::Human)) {
             return false;
         }
-        
+        //If it is The First Move
+        else {
+            return true;
+        }
     }
 
     /**
