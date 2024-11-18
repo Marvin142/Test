@@ -171,15 +171,15 @@ class GameController extends Controller
         // You can compare two values with
         // $a === $b       gets true if $a is equals $b
         // $a !== $b       gets true if $a is not equals $b
-        //
+        if ($a !== $b) {
         // Once all the checks have passed, you can finally update the game board by calling
-        // $game->setSpace( $x, $y, GameMark::Circle ).
-        // [ The code to check if the space is free goes here ]
-
-        // If the space is not free, run the code in the line below by removing the //
-        //return response("This space has already been claimed!")->setStatusCode(403)->header('Content-Type', 'text/plain');
-
-        // [ The code to update the game board goes here ]
+         $game->setSpace( $x, $y, GameMark::Circle );
+        }
+        else {
+            // If the space is not free, run the code in the line below by removing the //
+        return response("This space has already been claimed!")->setStatusCode(403)->header('Content-Type', 'text/plain'); 
+        }
+        
 
         // Saving the game board and output it to the player
         $game->save();
