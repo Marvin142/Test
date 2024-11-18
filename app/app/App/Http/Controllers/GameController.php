@@ -131,8 +131,13 @@ class GameController extends Controller
         // GamePlayer::Human (the last move was made by the player) or GamePlayer::None (this is the first move).
         // Inside of $player you have the player which wants to play now.
         // If he is allowed to play, you have to return true, otherwise you have to return false.
-
-        return true;
+        if ($game->getLastPlayer(GamePlayer::Robot)) {
+            return true; 
+        }
+        else {
+            return false;
+        }
+        
     }
 
     /**
@@ -171,7 +176,7 @@ class GameController extends Controller
         // You can compare two values with
         // $a === $b       gets true if $a is equals $b
         // $a !== $b       gets true if $a is not equals $b
-        if ($a !== $b) {
+        if ($game->getSpace($a !== $b)) {
         // Once all the checks have passed, you can finally update the game board by calling
          $game->setSpace( $x, $y, GameMark::Circle );
         }
